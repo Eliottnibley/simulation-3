@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import routes from './routes'
+import Nav from './components/Nav'
+import {connect} from 'react-redux'
 
-function App () {
-  return (
-    <div className='App'>
-      {routes}
-    </div>
-  )
+function App (props) {
+  if (props.isLoggedIn){
+    return (
+      <div className='App'>
+        <Nav/>
+        {routes}
+      </div>
+    )
+  }
+  else {
+    return (
+      <div className='App-login'>
+        {routes}
+      </div>
+    )
+  }
 }
 
+const mapStateToProps = reduxState => reduxState
 
-export default App;
+export default connect (mapStateToProps)(App)

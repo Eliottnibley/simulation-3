@@ -22,6 +22,8 @@ app.use(
 
 app.post('/api/auth/register', authCtrl.register)
 app.post('/api/auth/login', authCtrl.login)
+app.delete('api/auth/logout', authCtrl.logout)
+app.get('/api/auth/user', authCtrl.getUser)
 app.get('/api/posts/:userId', postCtrl.getPosts)
 app.post('/api/post/:userId', postCtrl.newPost)
 app.get('/api/post/:postId', postCtrl.getPost)
