@@ -1,10 +1,17 @@
 import React, {Component} from 'react'
+import {connect} from "react-redux"
 
 class Dashboard extends Component {
   constructor () {
     super() 
     this.state = {
 
+    }
+  }
+
+  componentDidMount() {
+    if (!this.props.isLoggedIn){
+      this.props.history.push('/')
     }
   }
 
@@ -17,4 +24,6 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard
+const mapStateToProps = reduxState => reduxState
+
+export default connect(mapStateToProps)(Dashboard)
