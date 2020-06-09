@@ -13,27 +13,90 @@ class Dashboard extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if (!this.props.isLoggedIn){
       this.props.history.push('/')
     }
     
+    this.getPosts()
   }
 
   reset () {
     this.setState({
       search: '',
-      userPosts: false
+      userPosts: false,
     })
+
+    Axios.get(`/api/posts/${this.props.user.userId}`)
+      .then(res => {
+        this.setState({posts: res.data})
+      })
+      .catch(err => {
+        console.log('get didtn work')
+      })
+  }
+
+  routePost (post){
+    const {id} = post
+    this.props.history.push(`/post/${id}`)
   }
 
   getPosts () {
     const {search, userPosts} = this.state
+    const {userId} = this.props.user
     
-    
+    if (userPosts && search !== '') {
+      Axios.get(`/api/posts/${userId}?userPosts=true&search=${search}`)
+      .then(res => {
+        this.setState({posts: res.data})
+      })
+      .catch(err => {
+        console.log('get posts did not work')
+      })
+    }
+    else if (search !== '') {
+      Axios.get(`/api/posts/${userId}?search=${search}`)
+      .then(res => {
+        this.setState({posts: res.data})
+      })
+      .catch(err => {
+        console.log('get posts didnt work')
+      })
+    }
+    else if (userPosts){
+      Axios.get(`/api/posts/${userId}?userPosts=true`)
+      .then(res => {
+        this.setState({posts: res.data})
+      })
+      .catch(err => {
+        console.log('get posts hasnt worked')
+      })
+    }
+    else {
+      Axios.get(`/api/posts/${userId}`)
+      .then(res => {
+        this.setState({posts: res.data})
+      })
+      .catch(err => {
+        console.log('get didtn work')
+      })
+    }
   }
 
   render() {
+    const postsDisplay = this.state.posts.map(elem => {
+      return (
+        <div onClick={() => this.routePost(elem)} className='single-post'>
+          <p className='post-title'>{elem.title}</p>
+          <div className='profile'>
+            <p className='post-username'>{`by ${elem.username}`}</p>
+            <div className='profile-picture'>
+              <img src={elem.profile_pic}/>
+            </div>
+          </div>
+        </div>
+      )
+    })
     return (
       <div className='dashboard-container'>
       <div className='search-container'>
@@ -47,7 +110,7 @@ class Dashboard extends Component {
         </div>
       </div>
       <div className='dashboard-posts'>
-
+        {postsDisplay}
       </div>
     </div>
     )
