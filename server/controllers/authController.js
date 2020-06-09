@@ -11,7 +11,7 @@ module.exports = {
     if (existingUser[0]){
       return res.status(409).send('User already exists')
     }
-
+    
     const salt = bcrypt.genSaltSync(5)
     const hash = bcrypt.hashSync(password, salt)
 
@@ -22,6 +22,7 @@ module.exports = {
       username: newUser[0].username,
       profilePic: newUser[0].profile_pic
     }
+
 
     res.status(200).send(req.session.user)
   },

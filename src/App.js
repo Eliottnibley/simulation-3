@@ -9,7 +9,9 @@ function App (props) {
     return (
       <div className='App'>
         <Nav/>
+        <div className='App-container'>
         {routes}
+        </div>
       </div>
     )
   }

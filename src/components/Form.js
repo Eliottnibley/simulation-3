@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
 class Form extends Component {
   constructor () {
@@ -8,13 +9,20 @@ class Form extends Component {
     }
   }
 
+  componentDidMount () {
+    if(!this.props.isLoggedIn){
+      this.props.history.push('/')
+    }
+  }
+
   render() {
     return (
       <div className='form-container'>
-
+        this is the form
     </div>
     )
   }
 }
 
-export default Form 
+const mapStateToProps = reduxState => reduxState
+export default connect(mapStateToProps)(Form)

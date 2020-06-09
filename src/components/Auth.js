@@ -21,13 +21,21 @@ class Auth extends Component {
   register = () => {
     const {username, password} = this.state
 
-    Axios.post('/appi/auth/register', {username: username, password: password})
+    if (username === '' || password === ''){
+      return alert('Input box empty. Please fill in all boxes')
+    }
+
+    if (username.includes(' ') || password.includes(' ')){
+      return alert('Neither Username or Password may contain any spaces')
+    }
+
+    Axios.post('/api/auth/register', {username: username, password: password})
     .then(res => {
       this.props.loginUser(res.data)
       this.props.history.push('/dashboard')
     })
     .catch(err => {
-      alert('Username already exists')
+      alert(err)
     })
   }
 

@@ -5,4 +5,23 @@
   width: 100vw;
   height: 100vh;
   background-image: linear-gradient(to right, #FF70A6, #FF9770, #FFD670, #E9FF70);
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+}
+
+.App {
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  background-color: #F2F2F2
+}
+
+.App-container {
+  height: 100vh;
+  width: 100vw;
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
