@@ -1,0 +1,74 @@
+.form-container {
+  width: 800px;
+  height: 700px;
+  background-color: white;
+  margin: 20px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 3px grey;
+}
+
+.form-title {
+  font-size: 40px;
+  font-weight: 600;
+  margin-left: 10px;
+  color: #FF9770
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+.input-pic {
+  box-shadow: 0px 0px 3px grey;
+  width: 400px;
+  height: 250px;
+  margin: 20px;
+  position: relative;
+  left: 100px;
+  background-image: url(https://bhmlib.org/wp-content/themes/cosimo-pro/images/no-image-box.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.input-pic img {
+  width: 100%;
+  height: 100%;
+}
+
+.form label {
+  margin-top:  10px;;
+  font-weight: 600;
+}
+
+.form input {
+  width: 650px;
+}
+
+.form textarea {
+  min-width: 650px;
+  max-width: 650px;
+  min-height: 120px;
+  max-height: 120px;
+}
+
+.submit-button {
+  width: 70px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  border-radius: 3px;
+  background-color: rgb(78, 78, 78);
+  border: 0px;
+  background-image: radial-gradient(ellipse at top, rgb(122, 122, 122), rgb(63, 63, 63));
+  color: white;
+}
+
+.submit-button:hover {
+  cursor: pointer;
+}
